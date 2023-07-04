@@ -115,12 +115,12 @@ class dwm1001_localizer:
                         # Discard the pose data from USB if there exists "nan" in the values
                         if(np.isnan(t_pose_list).any()):
                             # print("Serial data include Nan!")  # just for debug
-                            pass
+                            continue #to avoid reference before assignment error
                         else:
                             t_pose_xyz = np.array(t_pose_list) # numpy array
 
-                        # t_pose_xyz = np.array([t_pose_x, t_pose_y, t_pose_z])
-                        t_pose_xyz.shape = (len(t_pose_xyz), 1)    # force to be a column vector                                       
+                            # t_pose_xyz = np.array([t_pose_x, t_pose_y, t_pose_z])
+                            t_pose_xyz.shape = (len(t_pose_xyz), 1)    # force to be a column vector                                       
 
                         if tag_macID not in self.kalman_list:   # TODO: tag_macID
                             # self.kalman_list.append(tag_id)
